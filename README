@@ -1,0 +1,41 @@
+Nagios-CloudStack === Nagios check scripts to monitor your cloudstack
+
+sample output service state information on nagios :
+
+Current Status:	  WARNING   (for 0d 0h 15m 58s)
+Status Information:	WARNING !!
+WARNING: Virtual Network Public IP used = 65%
+OK: Memory used = 39.89%
+OK: Storage Allocated used = 8.83%
+OK: Secondary Storage used = 24.95%
+OK: Storage used = 24.95%
+OK: Direct Attached Public IP used = 0%
+OK: VLAN used = 30%
+OK: Private IP used = 10%
+OK: CPU used = 17.62%
+
+INSTALL
+
+#cpan Config::General App::Cmd Mouse XML::LibXML URI::Encode WWW::Mechanize Digest::SHA File::Basename MIME::Base64 Encode Log::Log4perl
+#cp -vr [source_dir] /opt/nagios-cloudstack
+#chown -R nagios.nagios /opt/nagios-cloudstack
+#modify 'use lib' on check_cloudstack.pl to /opt/nagios-cloudstack/lib
+#ln -s /opt/nagios-cloudstack/etc/nagios-cloudstack.conf /etc/
+#ln -s /opt/nagios-cloudstack/check_cloudstack.pl /usr/local/nagios/libexec/
+#set your setting (apikey,url,secretkey) on /etc/nagios-cloudstack.conf
+
+script usage:
+/usr/local/nagios/libexec/check_cloudstack.pl capacity -z [zone id] -w [warning percentage] -c [critical percentage]
+
+sample setting on nagios service definition on server using nrpe:
+define service{
+        use                     generic-service
+        hostgroup_name          cloudstack
+        service_description     public zone capacity
+        check_command           check_nrpe!check_cloudstack_capacity
+}
+
+nrpe.cfg on client :
+command[check_cloudstack_capacity]=/usr/local/nagios/libexec/check_cloudstack.pl capacity -z 69c2e118-cf8b-4594-9d23-02b144f4b2fa -w 60 -c 80
+
+

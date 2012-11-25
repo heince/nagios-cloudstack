@@ -1,0 +1,116 @@
+<root>
+    <top>/listzonesresponse/zone</top>
+    <command>listZones</command>
+    <defaultresponses>id,name,domainid,domainname,networktype</defaultresponses>
+    <params>
+        <param>
+            <name>available</name>
+            <description>true if you want to retrieve all available Zones. False if you only want to return the Zones from which you have at least one VM. Default is false.</description>
+            <required>false</required>
+        </param>
+        <param>
+            <name>domainid</name>
+            <description>the ID of the domain associated with the zone</description>
+            <required>false</required>
+        </param>
+        <param>
+            <name>id</name>
+            <description>The ID of the zone</description>
+            <required>true</required>
+        </param>
+        <param>
+            <name>keyword</name>
+            <description>List by keyword</description>
+            <required>false</required>
+        </param>
+        <param>
+            <name>page</name>
+            <description></description>
+            <required>false</required>
+        </param>
+        <param>
+            <name>pagesize</name>
+            <description></description>
+            <required>false</required>
+        </param>
+        <param>
+            <name>showcapacities</name>
+            <description>flag to display the capacity of the zones</description>
+            <required>false</required>
+        </param>
+    </params>
+    <responses>
+        <response>
+            <name>id</name>
+            <description>Zone id</description>
+        </response>
+        <response>
+            <name>allocationstate</name>
+            <description>the allocation state of the cluster</description>
+        </response>
+        <response>
+            <name>description</name>
+            <description>Zone description</description>
+        </response>
+        <response>
+            <name>dhcpprovider</name>
+            <description>the dhcp Provider for the Zone</description>
+        </response>
+        <response>
+            <name>displaytext</name>
+            <description>the display text of the zone</description>
+        </response>
+        <response>
+            <name>name</name>
+            <description>Zone name</description>
+        </response>
+        <response>
+            <name>dns1</name>
+            <description>the first DNS for the Zone</description>
+        </response>
+        <response>
+            <name>dns2</name>
+            <description>the second DNS for the Zone</description>
+        </response>
+        <response>
+            <name>domain</name>
+            <description>Network domain name for the networks in the zone</description>
+        </response>
+        <response>
+            <name>domainid</name>
+            <description>the ID of the containing domain, null for public zones</description>
+        </response>
+        <response>
+            <name>domainname</name>
+            <description>the name of the containing domain, null for public zones</description>
+        </response>
+        <response>
+            <name>guestcidraddress</name>
+            <description>the guest CIDR address for the Zone</description>
+        </response>
+        <response>
+            <name>internaldns1</name>
+            <description>the first internal DNS for the Zone</description>
+        </response>
+        <response>
+            <name>internaldns2</name>
+            <description>the second internal DNS for the Zone</description>
+        </response>
+        <response>
+            <name>networktype</name>
+            <description>the network type of the zone; can be Basic or Advanced</description>
+        </response>
+        <response>
+            <name>securitygroupsenabled</name>
+            <description>true if security groups support is enabled, false otherwise</description>
+        </response>
+        <response>
+            <name>vlan</name>
+            <description>the vlan range of the zone</description>
+        </response>
+        <response>
+            <name>zonetoken</name>
+            <description>Zone Token</description>
+        </response>
+    </responses>
+</root>
