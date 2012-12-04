@@ -71,12 +71,12 @@ sub print_nagios{
 	}
 	
 	if(grep {/^CRITICAL/} @status){
-		print "CRITICAL !!\n";
+		print "CRITICAL : one / more resources exceed threshold !\n";
 		print @status;
 		exit 2;
 	}
 	elsif(grep {/^WARNING/} @status){
-		print "WARNING ! \n";
+		print "WARNING : one / more resources exceed threshold ! \n";
 		print @status;
 		exit 1;
 	}elsif(grep {/^OK/} @status){
