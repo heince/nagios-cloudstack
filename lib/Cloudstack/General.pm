@@ -15,7 +15,10 @@ sub getGlobalConfig{
 	$self->logger->info("Running " . (caller(0))[3]);
 	
 	#check if config file exist
-	die "config file not found\n" unless -f $self->cfgpath;
+	unless(-f $self->cfgpath){
+		print "CRITICAL : config file not found\n";
+		exit 2;
+	}
 	
 	my $conf = new Config::General(
 				-ConfigFile => $self->cfgpath
@@ -138,7 +141,8 @@ sub get_result{
 		my $errcode = "Error code: " . $xml->findnodes("/*/errorcode")->string_value() . "\n" if $xml;
 		my $errtxt = "Error text: " . $xml->findnodes("/*/errortext")->string_value() . "\n" if $xml;
 
-		die "Error : $errtxt\n";
+		print "CRITICAL : $errtxt\n";
+		exit 2;
 	}
 	
 	my $xml = encode('cp932',$mech->content);
