@@ -3,7 +3,7 @@ Nagios-CloudStack === Nagios check scripts to monitor your cloudstack
 sample output service state information on nagios :
 
 Current Status:	  WARNING   (for 0d 0h 15m 58s)
-Status Information:	WARNING !!
+Status Information:	WARNING : one / more resources exceed threshold !
 WARNING: Virtual Network Public IP used = 65%
 OK: Memory used = 39.89%
 OK: Storage Allocated used = 8.83%
@@ -13,6 +13,26 @@ OK: Direct Attached Public IP used = 0%
 OK: VLAN used = 30%
 OK: Private IP used = 10%
 OK: CPU used = 17.62%
+
+USAGE
+
+#zone capacity :
+./check_cloudstack.pl capacity -z 69c2e118-cf8b-4594-xxx -f etc/nagios-cloudstack.conf -c 60 -w 30
+
+#check all vm belong to an account
+./check_cloudstack.pl vm  -f etc/nagios-cloudstack.conf -a a9ee78f9-b156-483f-9db7-8deb0b71bfb8
+
+CRITICAL: one/more vm is not running !
+CRITICAL : vmname TPCN02 status is Stopped
+CRITICAL : vmname CN01 status is Stopped
+CRITICAL : vmname 03592f87-cc43-44ba-b302-42bb7ab55113 status is Stopped
+CRITICAL : vmname TPHN status is Stopped
+
+#check vm state by vm uuid
+./check_cloudstack.pl vm -i cdcfa32b-8586-4abc-a7e2-e40830b28267 -f ~/temp/nagios-cloudstack.conf
+
+OK : vmid cdcfa32b-8586-4abc-a7e2-e40830b28267 is Running
+
 
 INSTALL
 
